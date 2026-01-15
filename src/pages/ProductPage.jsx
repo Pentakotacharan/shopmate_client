@@ -4,6 +4,7 @@ import axios from 'axios';
 import CartContext from '../context/CartContext';
 import Loader from '../components/Loader';
 import { toast } from 'react-toastify';
+import { apiUrl } from '../../api';
 
 const ProductPage = () => {
   const { id } = useParams();
@@ -17,7 +18,7 @@ const ProductPage = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const { data } = await axios.get(`https://shopmate-server.vercel.app/api/products/${id}`);
+        const { data } = await axios.get(apiUrl+`/api/products/${id}`);
         setProduct(data);
         setLoading(false);
       } catch (error) {
