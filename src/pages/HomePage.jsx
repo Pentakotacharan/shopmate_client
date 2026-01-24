@@ -11,10 +11,13 @@ const HomePage = () => {
 
   const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
   useEffect(() => {
-    // console.log(apiUrl);
+    console.log("hi");
     const fetchProducts = async () => {
       try {
-        const { data } = await axios.get(`${API_URL}/api/products`);
+        console.log("hello");
+        console.log("Fetching from:", `${API_URL}/api/products`);
+        const {data} = await axios.get(`${API_URL}/api/products`);
+        console.log("hii");
         setProducts(data);
         setLoading(false);
       } catch (error) {
