@@ -9,10 +9,12 @@ const HomePage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null); // Added error state handling
 
+  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
   useEffect(() => {
+    // console.log(apiUrl);
     const fetchProducts = async () => {
       try {
-        const { data } = await axios.get('/api/products');
+        const { data } = await axios.get(`${API_URL}/api/products`);
         setProducts(data);
         setLoading(false);
       } catch (error) {

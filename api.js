@@ -1,1 +1,0 @@
-export const apiUrl = 'https://shopmate-server.vercel.app';

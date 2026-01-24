@@ -4,7 +4,7 @@ import axios from 'axios';
 import CartContext from '../context/CartContext';
 import Loader from '../components/Loader';
 import { toast } from 'react-toastify';
-import { apiUrl } from '../../api';
+
 
 const ProductPage = () => {
   const { id } = useParams();
@@ -12,13 +12,13 @@ const ProductPage = () => {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [qty, setQty] = useState(1);
-
+  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
   const { addToCart } = useContext(CartContext);
 
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const { data } = await axios.get(apiUrl+`/api/products/${id}`);
+        const { data } = await axios.get(`${API_URL}/api/products/${id}`);
         setProduct(data);
         setLoading(false);
       } catch (error) {
