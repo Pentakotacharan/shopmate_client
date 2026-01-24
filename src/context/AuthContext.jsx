@@ -14,6 +14,20 @@ export const AuthProvider = ({ children }) => {
       const config = { headers: { 'Content-Type': 'application/json' } };
       const { data } = await axios.post('/api/auth/login', { email, password }, config);
       setUser(data);
+
+      localStorage.setItem('userInfo', JSON.stringify(data));
+      return { success: true };
+    } catch (error) {
+      return { success: false, error: error.response?.data?.message || error.message };
+    }
+  };
+
+  const register = async (email, password) => {
+    try {
+      const config = { headers: { 'Content-Type': 'application/json' } };
+      const { data } = await axios.post('/api/auth/register', { email, password }, config);
+      setUser(data);
+      
       localStorage.setItem('userInfo', JSON.stringify(data));
       return { success: true };
     } catch (error) {
