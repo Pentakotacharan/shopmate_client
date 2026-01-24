@@ -22,7 +22,7 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const register = async (email, password) => {
+  const register = async (name, email, password) => {
     try {
       const config = { headers: { 'Content-Type': 'application/json' } };
       const { data } = await axios.post('/api/auth/register', { name, email, password }, config);
