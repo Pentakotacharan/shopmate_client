@@ -3,6 +3,7 @@ import axios from 'axios';
 
 const AuthContext = createContext();
 
+
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(() => {
     const savedUser = localStorage.getItem('userInfo');
@@ -12,7 +13,7 @@ export const AuthProvider = ({ children }) => {
   const login = async (email, password) => {
     try {
       const config = { headers: { 'Content-Type': 'application/json' } };
-      const { data } = await axios.post('/api/auth/login', { email, password }, config);
+      const { data } = await axios.post(`/api/auth/login`, { email, password }, config);
       setUser(data);
 
       localStorage.setItem('userInfo', JSON.stringify(data));
@@ -25,7 +26,7 @@ export const AuthProvider = ({ children }) => {
   const register = async (name, email, password) => {
     try {
       const config = { headers: { 'Content-Type': 'application/json' } };
-      const { data } = await axios.post('/api/auth/register', { name, email, password }, config);
+      const { data } = await axios.post(`/api/auth/register`, { name, email, password }, config);
       setUser(data);
       
       localStorage.setItem('userInfo', JSON.stringify(data));
@@ -41,7 +42,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, register,logout }}>
+    <AuthContext.Provider value={{ user, login, register, logout }}>
       {children}
     </AuthContext.Provider>
   );
