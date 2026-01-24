@@ -16,9 +16,10 @@ const HomePage = () => {
       try {
         console.log("hello");
         console.log("Fetching from:", `${API_URL}/api/products`);
-        const {data} = await axios.get(`${API_URL}/api/products`);
+        const res = await axios.get(`${API_URL}/api/products`);
         console.log("hii");
-        setProducts(data);
+        console.log(res)
+        setProducts(res?.data);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching products", error);
@@ -31,7 +32,7 @@ const HomePage = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      
+
       {/* --- HERO SECTION (RESPONSIVE) --- */}
       {/* bg-gray-900 on mobile, large text centering */}
       <div className="bg-gray-900 text-white py-12 md:py-20">
@@ -69,7 +70,7 @@ const HomePage = () => {
           </div>
         )}
       </div>
-      
+
     </div>
   );
 };
