@@ -1,1 +1,1 @@
-export const API_URL = "http://localhost:5000" || process.env.VITE_API_URL;
+export const API_URL = "https://shopmate-server.vercel.app";
