@@ -1,10 +1,11 @@
 import { createContext, useState } from 'react';
 import axios from 'axios';
+import { API_URL } from '../api';
 
 
 const AuthContext = createContext();
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(() => {
     const savedUser = localStorage.getItem('userInfo');
@@ -35,7 +36,6 @@ export const AuthProvider = ({ children }) => {
       localStorage.setItem('userInfo', JSON.stringify(data));
       return { success: true };
     } catch (error) {
-      console.error("Login error:", error);
       console.log("Error details:", error.response?.data);
       return { success: false, error: error.response?.data?.message || error.message };
     }
