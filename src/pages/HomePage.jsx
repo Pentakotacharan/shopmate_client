@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import ProductCard from '../components/ProductCard';
 import Loader from '../components/Loader';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-scroll';
 
 
 const HomePage = () => {
@@ -44,9 +44,9 @@ const HomePage = () => {
           <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
             Discover the latest electronics, gadgets, and accessories at unbeatable prices.
           </p>
-          <a href="#products" className="bg-yellow-500 text-black font-bold py-3 px-8 rounded-full hover:bg-yellow-400 transition transform hover:scale-105 inline-block">
+          <Link to="products" smooth={true} offset={-200} duration={500} className="bg-yellow-500 text-black font-bold py-3 px-8 rounded-full hover:bg-yellow-400 transition transform hover:scale-105 inline-block">
             Shop Now
-          </a>
+          </Link>
         </div>
       </div>
 
