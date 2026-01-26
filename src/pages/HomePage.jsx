@@ -44,7 +44,7 @@ const HomePage = () => {
           <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
             Discover the latest electronics, gadgets, and accessories at unbeatable prices.
           </p>
-          <Link to="products" smooth={true} offset={-100} duration={500} className="bg-yellow-500 text-black font-bold py-3 px-8 rounded-full hover:bg-yellow-400 transition transform hover:scale-105 inline-block">
+          <Link to="products" smooth={true} offset={-100} duration={500} className="bg-yellow-500 text-black font-bold py-3 px-8 rounded-full hover:bg-yellow-400 transition transform hover:scale-105 inline-block cursor-pointer">
             Shop Now
           </Link>
         </div>
