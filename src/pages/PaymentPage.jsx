@@ -4,6 +4,8 @@ import { toast } from 'react-toastify';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements, PaymentElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { load } from '@cashfreepayments/cashfree-js';
+import { API_URL } from '../api';
+
 
 // Context
 import CartContext from '../context/CartContext';
@@ -90,7 +92,7 @@ const PaymentPage = () => {
   
   useEffect(() => {
     // 1. Load Stripe Public Key
-    axios.get("/api/payment/config/stripe")
+    axios.get(`${API_URL}/api/payment/config/stripe`)
       .then((r) => setStripePromise(loadStripe(r.data.publishableKey)))
       .catch((err) => console.error("Failed to load Stripe key", err));
 
@@ -105,7 +107,7 @@ const PaymentPage = () => {
     if (method === 'stripe' && totalAmount > 0) {
       const createStripeIntent = async () => {
         try {
-          const { data } = await axios.post("/api/payment/create-payment-intent", { amount: amountInCents });
+          const { data } = await axios.post(`${API_URL}/api/payment/create-payment-intent`, { amount: amountInCents });
           setStripeClientSecret(data.clientSecret);
         } catch (error) {
           console.error("Stripe Intent Error:", error);
@@ -129,7 +131,7 @@ const PaymentPage = () => {
 
     // B. Create Order on Backend
     try {
-      const { data } = await axios.post("/api/payment/razorpay-order", { 
+      const { data } = await axios.post(`${API_URL}/api/payment/razorpay-order`, { 
         amount: amountInINR // Razorpay takes amount in paise
       });
 
@@ -181,7 +183,7 @@ const PaymentPage = () => {
     if (!cashfree) return toast.error("Cashfree SDK failed to load");
 
     try {
-      const { data } = await axios.post("/api/payment/cashfree-order", { 
+      const { data } = await axios.post(`${API_URL}/api/payment/cashfree-order`, { 
         amount: amountInINR,
         customerId: "user_123", // Replace with actual User ID
       });
