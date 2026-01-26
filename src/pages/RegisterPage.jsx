@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import AuthContext from '../context/AuthContext';
 import { toast } from 'react-toastify';
+import { API_URL } from '../api';
 
 const RegisterPage = () => {
   const [name, setName] = useState('');
@@ -16,7 +17,7 @@ const RegisterPage = () => {
     e.preventDefault();
     try {
       // 1. Register User
-      await axios.post('/api/auth/register', { name, email, password });
+      await axios.post(`${API_URL}/api/auth/register`, { name, email, password });
       
       // 2. Auto-login immediately after registration
       const result = await login(email, password);
